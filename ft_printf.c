@@ -6,7 +6,7 @@
 /*   By: nel-baz <nel-baz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 09:38:58 by nel-baz           #+#    #+#             */
-/*   Updated: 2022/11/06 11:00:13 by nel-baz          ###   ########.fr       */
+/*   Updated: 2022/11/06 11:34:53 by nel-baz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,25 @@
 
 void	ft_check(va_list args, const char *ptr)
 {
-	char *str;
+	char	*str;
+
 	if (*(ptr + 1) == 'd')
 		ft_rev(va_arg(args, int), str, 10);
 	else if (*(ptr + 1) == 'c')
 		ft_rev(va_arg(args, char), str);
-	//if (*(ptr + 1) == 's')
-		//ft_rev(i);
-	if (*(ptr + 1) == 'x')
+	else if (*(ptr + 1) == 's')
+		ft_rev(va_arg(args, char *));
+	else if (*(ptr + 1) == 'x')
 		ft_print(va_arg(args, int), str, 16);
-	if (*(ptr + 1) == 'X')
+	else if (*(ptr + 1) == 'X')
 		ft_print(va_arg(args, int), str, 16);
-	if (*(ptr + 1) == 'i')
+	else if (*(ptr + 1) == 'i')
 		ft_print(va_arg(args, int), str, 10);
-	if (*(ptr + 1) == 'u')
-		ft_print(va_arg(args, int), str, 10);
-	if (*(ptr + 1) == 'p')
+	else if (*(ptr + 1) == 'u')
+		ft_print(va_arg(args, unsigned int), str, 10);
+	else if (*(ptr + 1) == 'p')
 		ft_print(va_arg(args, int));
-	if (*(ptr + 1) == '%')
+	else if (*(ptr + 1) == '%')
 		ft_print(va_arg(args, int));
 }
 
