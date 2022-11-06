@@ -6,7 +6,7 @@
 #    By: nel-baz <nel-baz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/05 09:30:50 by nel-baz           #+#    #+#              #
-#    Updated: 2022/11/05 09:33:40 by nel-baz          ###   ########.fr        #
+#    Updated: 2022/11/06 10:43:13 by nel-baz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,11 +16,11 @@ CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS = 
+SRCS = ft_printf.c ft_rev.c 
 
 OBJS = $(SRCS:.c=.o)
 
-%.o: %.c libft.h
+%.o: %.c ft_printf.h
 	$(CC) $(CFLAGS) -c $<
 
 all : $(NAME)
