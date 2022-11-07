@@ -6,7 +6,7 @@
 /*   By: nel-baz <nel-baz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 20:55:50 by nel-baz           #+#    #+#             */
-/*   Updated: 2022/11/07 01:37:09 by nel-baz          ###   ########.fr       */
+/*   Updated: 2022/11/07 16:42:43 by nel-baz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,3 @@ int	ft_putstr(char *s)
 	}
 	return (i);
 }
-//  int main()
-//  {
-// 	printf("%d", ft_putstr(NULL));
-// 		//ft_putstr(NULL));
-//  }

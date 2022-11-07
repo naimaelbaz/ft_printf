@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbrhex.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oem <oem@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: nel-baz <nel-baz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 00:50:04 by nel-baz           #+#    #+#             */
-/*   Updated: 2022/11/07 11:36:49 by oem              ###   ########.fr       */
+/*   Updated: 2022/11/07 16:47:59 by nel-baz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	count_size(unsigned int n, int b)
+static int	count_size(unsigned long long n, int b)
 {
 	int	count;
 
@@ -27,7 +27,7 @@ static int	count_size(unsigned int n, int b)
 	return (count);
 }
 
-static char	*ft_itoabase(unsigned int n, char *base, int b)
+static char	*ft_itoabase(unsigned long long n, char *base, int b)
 {
 	int		ln;
 	char	*ptr;
@@ -48,14 +48,23 @@ static char	*ft_itoabase(unsigned int n, char *base, int b)
 	return (ptr);
 }
 
-int	ft_putnbrhex(unsigned int index, char *base, int b)
+int	ft_putnbrhex(unsigned long long n, char *base, int b)
 {
 	char	*str;
 	int		len;
 
-	str = ft_itoabase(index, base, b);
+	str = ft_itoabase(n, base, b);
 	len = ft_putstr(str);
 	free(str);
 	str = NULL;
 	return (len);
+}
+
+int	ft_putpointer(void *p)
+{
+	int	i;
+
+	i = ft_putstr("0x");
+	i += ft_putnbrhex((unsigned long long)p, "0123456789abcdef", 16);
+	return (i);
 }

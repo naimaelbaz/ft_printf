@@ -6,7 +6,7 @@
 /*   By: nel-baz <nel-baz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 22:40:31 by nel-baz           #+#    #+#             */
-/*   Updated: 2022/11/07 01:35:46 by nel-baz          ###   ########.fr       */
+/*   Updated: 2022/11/07 17:00:20 by nel-baz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,12 @@ static char	*ft_itoa(int n)
 	return (ptr);
 }
 
-int	ft_putnbr(int index)
+int	ft_putnbr(int n)
 {
 	char	*str;
 	int		len;
 
-	str = ft_itoa(index);
+	str = ft_itoa(n);
 	len = ft_putstr(str);
 	free(str);
 	str = NULL;
