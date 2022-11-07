@@ -6,7 +6,7 @@
 /*   By: nel-baz <nel-baz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 09:38:58 by nel-baz           #+#    #+#             */
-/*   Updated: 2022/11/07 16:59:05 by nel-baz          ###   ########.fr       */
+/*   Updated: 2022/11/07 21:56:26 by nel-baz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,10 @@ int	ft_check(va_list args, char ptr)
 		index += ft_putnbrhex(va_arg(args, unsigned int), "0123456789", 10);
 	else if (ptr == 'p')
 		index += ft_putpointer(va_arg(args, void *));
-	//else if (*(ptr + 1) == '%')
-		//ft_print(va_arg(args, int));
+	else if (ptr == '%')
+		index += ft_putchar(ptr);
+	else
+		ft_putchar(ptr);
 	return (index);
 }
 
@@ -55,6 +57,6 @@ int	ft_printf(const char *ptr, ...)
 			index += ft_putchar(ptr[i]);
 		i++;
 	}
+	va_end(args);
 	return (index);
 }
-
