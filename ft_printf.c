@@ -6,7 +6,7 @@
 /*   By: oem <oem@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 09:38:58 by nel-baz           #+#    #+#             */
-/*   Updated: 2022/11/07 11:45:45 by oem              ###   ########.fr       */
+/*   Updated: 2022/11/07 14:04:57 by oem              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_check(va_list args, char ptr)
 	else if (ptr == 'u')
 		index += ft_putnbrhex(va_arg(args, unsigned int),"0123456789", 10);
 	else if (ptr == 'p')
-		index += ft_print(va_arg(args, int));
+		index += ft_putnbrhex(va_arg(args, unsigned long));
 	//else if (*(ptr + 1) == '%')
 		//ft_print(va_arg(args, int));
 	return (index);
@@ -55,4 +55,10 @@ int	ft_printf(const char *ptr, ...)
 		i++;
 	}
 	return (index);
+}
+
+int main()
+{
+	 void *p;
+    ft_printf("%p",&p);
 }
