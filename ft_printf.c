@@ -3,63 +3,60 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oem <oem@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: nel-baz <nel-baz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 09:38:58 by nel-baz           #+#    #+#             */
-/*   Updated: 2022/11/06 16:53:09 by oem              ###   ########.fr       */
+/*   Updated: 2022/11/07 01:35:12 by nel-baz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-
-void	ft_check(va_list args, const char index)
+int	ft_check(va_list args, char ptr)
 {
 	char	*str;
+	int		index;
 
-	if (index == 'd')
-		str == ft_itoa(va_arg(args, int));
-	else if (index == 'c')
-		index == va_arg(args, char);
-	else if (index == 's')
-		ft_rev(va_arg(args, char *));
-	else if (index == 'x')
-		ft_print(va_arg(args, int), str, 16);
-	else if (index == 'X')
-		ft_print(va_arg(args, int), str, 16);
-	else if (index == 'i')
-		ft_print(va_arg(args, int), str, 10);
-	else if (index == 'u')
-		ft_print(va_arg(args, unsigned int), str, 10);
-	else if (index == 'p')
-		ft_print(va_arg(args, int));
-	else if (index == '%')
-		ft_print(va_arg(args, int));
+	index = 0;
+	if (ptr == 'd' || (ptr + 1) == 'i')
+		index += ft_putnbr(va_arg(args, int));
+	else if (ptr == 'c')
+		index += ft_putchar(va_arg(args, int));
+	else if (ptr == 's')
+		index += ft_putstr(va_arg(args, char *));
+	else if (ptr == 'x')
+		index += ft_putnbrhex(va_arg(args, unsigned int), "0123456789abcdef");
+	else if (ptr == 'X')
+		index += ft_putnbrhex(va_arg(args, unsigned int), "0123456789ABCDEF");
+	//else if (*(ptr + 1) == 'u')
+	//	index += ft_print(va_arg(args, unsigned int), str, 10);
+	//else if (*(ptr + 1) == 'p')
+		//ft_print(va_arg(args, int));
+	//else if (*(ptr + 1) == '%')
+		//ft_print(va_arg(args, int));
+	return (index);
 }
 
 int	ft_printf(const char *ptr, ...)
 {
 	va_list	args;
-	char	*tmp;
-	size_t	i;
-	size_t	len;
-	char	*buffer;
+	int		index;
+	int		i;
 
 	i = 0;
-	len = ft_strlen(ptr);
-	buffer = malloc(sizeof(char) * (len + 1));
-	if (!buffer)
-		return (NULL);
+	index = 0;
 	va_start(args, ptr);
-	while (ptr[i] && i < len)
+	while (ptr[i])
 	{
 		if (ptr[i] && ptr[i] == '%')
-			tmp = ft_check(args, ptr + i);
-			ft_memcpy(&buffer[i],tmp,ft_strlen(tmp));
+			index += ft_check(args, ptr[++i]);
 		else
-			buffer[i] = ptr[i];
+			index += ft_putchar(ptr[i]);
 		i++;
 	}
-	ft_putstr_fd(buffer, 1);
-	return (i);
+	return (index);
 }
+/*int main()
+{
+	printf("%d",ft_printf("%s\n", NULL));
+}*/
